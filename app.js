@@ -20,6 +20,10 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 
+app.get("/api/", (req, res) => {
+    res.send("connected");
+});
+
 app.use("/api/colorusagegraph", colorUsageGraphRouter);
 
 const port = process.env.PORT | 3000;
