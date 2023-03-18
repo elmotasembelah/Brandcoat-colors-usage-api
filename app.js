@@ -34,6 +34,7 @@ const startServer = () => {
     try {
         app.listen(port, () => {
             console.log(`server is listening on port: ${port}`);
+            console.log("started");
         });
     } catch (error) {
         console.log(error);
