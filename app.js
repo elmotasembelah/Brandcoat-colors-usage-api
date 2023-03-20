@@ -28,13 +28,12 @@ app.use("/api/colorusagegraph", colorUsageGraphRouter);
 
 app.use((req, res) => res.status(404).send("Route does not exist"));
 
-const port = process.env.PORT | 3000;
+const port = process.env.PORT | 3001;
 
 const startServer = () => {
     try {
         app.listen(port, () => {
             console.log(`server is listening on port: ${port}`);
-            console.log("started");
         });
     } catch (error) {
         console.log(error);
