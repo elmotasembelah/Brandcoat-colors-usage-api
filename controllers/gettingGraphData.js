@@ -21,7 +21,6 @@ const startDisplayGraph = async (req, res) => {
         countedColorsValues,
         histogramColors,
     });
-    // displayChart(datasets, industryName);
 };
 
 const prepareHistogramColors = (countedColors, colorsNamesAndHexValues) => {
@@ -35,31 +34,4 @@ const prepareHistogramColors = (countedColors, colorsNamesAndHexValues) => {
     return histogramColors;
 };
 
-let stackedBarChart;
-
-const displayChart = (datasets, industryName) => {
-    // Bar chart
-    stackedBarChart = new Chart(document.getElementById("bar-chart"), {
-        type: "bar",
-        data: {
-            labels: ["Red", "Blue", "Green", "Brown", "Purple"],
-            datasets: datasets,
-        },
-        options: {
-            plugins: {
-                legend: { display: true },
-                title: {
-                    display: true,
-                    text: `The usage of colors in ${industryName.toLowerCase()} over the years`,
-                },
-            },
-            resposive: true,
-        },
-    });
-};
-
-const destroyChart = () => {
-    stackedBarChart.destroy();
-};
-
-module.exports = { startDisplayGraph, destroyChart };
+module.exports = { startDisplayGraph };
