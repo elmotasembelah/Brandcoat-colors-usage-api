@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { startDisplayGraph } = require("../controllers/gettingGraphData");
+const { startCounting } = require("../controllers/countingPosts");
 
-router.route("/").get(startDisplayGraph);
+router.route("/").get(startCounting);
 
 module.exports = router;

@@ -9,8 +9,7 @@ let industriesCollectionData;
 const BRANDCOATAPI = new Webflow({
     token: process.env.BRANDCOAT_ACCESS_TOKEN,
 });
-
-BRANDCOATAPI && console.log("connected !!!!!!!!!!!!!!!!!!");
+console.log("connected !!!!!!!!!!!!!!!!!!");
 
 const getColorUsageGraphData = async (reqBody, res) => {
     const { industryFilter } = reqBody;
@@ -41,6 +40,7 @@ const connectToSite = async () => {
     const brandCoatDB = await BRANDCOATAPI.site({
         siteId: "5fb85f262823b4390bcfe076",
     });
+    console.log("connected to site ");
     return brandCoatDB;
 };
 
@@ -48,6 +48,7 @@ const getPostsCollectionData = async (brandCoatDB) => {
     const postsCollection = await brandCoatDB.collection({
         collectionId: "63dd4fc33d98e6335ac43f3c",
     });
+    console.log("connected to posts collection");
     const postsCollectionData = await getAllCollectionData(postsCollection);
     // return postsCollectionData
     // ! this is added only for the color case ( some posts don't have colors )
