@@ -4,7 +4,7 @@ let countedColors = {};
 
 const startCounting = async (req, res, industryFilter) => {
     let { postsColorsAndIndustryNames, colorsNamesAndHexValues } =
-        await getColorUsageGraphData(req.body);
+        await getColorUsageGraphData();
     countedColors = {};
     if (industryFilter !== "All industries") {
         postsColorsAndIndustryNames = filterThenCountPosts(

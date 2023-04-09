@@ -10,8 +10,7 @@ const BRANDCOATAPI = new Webflow({
     token: process.env.BRANDCOAT_ACCESS_TOKEN,
 });
 
-const getColorUsageGraphData = async (reqBody, res) => {
-    const { industryFilter } = reqBody;
+const getColorUsageGraphData = async () => {
     if (!industriesCollectionData) {
         brandCoatDB = await connectToSite();
         postsCollectionData = await getPostsCollectionData(brandCoatDB);
