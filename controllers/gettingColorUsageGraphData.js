@@ -48,7 +48,7 @@ const getPostsCollectionData = async (brandCoatDB) => {
     });
     const postsCollectionData = await getAllCollectionData(postsCollection);
     // return postsCollectionData
-    // ! this is added only for the color case ( some posts don't have colors )
+    // ! this is added only for the no color case ( some posts don't have colors )
     const coloredPostsData = filterPostsWithNoColors(postsCollectionData);
     // if ()
     return coloredPostsData;
@@ -91,7 +91,9 @@ const getColorsCollectionData = async (brandCoatDB, postsCollectionData) => {
     // return colorsCollectionData
     // ! this  is only added for the main colors case ( only working with main colors not all of them )
     const mainColorsData = getMainColorsData(colorsCollectionData);
-    return mainColorsData;
+    // ! this is only added to remove the white color data
+    const mainColorsDataWithoutWhiteColor = removeWhiteColor(mainColorsData);
+    return mainColorsDataWithoutWhiteColor;
 };
 
 const getMainColorsData = (colorsCollectionData) => {
@@ -101,6 +103,15 @@ const getMainColorsData = (colorsCollectionData) => {
         return colorData[main_colors] && !colorData[colorIsSpecial];
     });
     return mainColorsData;
+};
+
+const removeWhiteColor = (colorsCollectionData) => {
+    const colorsCollectionDataWithoutWhite = colorsCollectionData.filter(
+        (colorData) => {
+            return colorData.name !== "White";
+        }
+    );
+    return colorsCollectionDataWithoutWhite;
 };
 
 const getIndustriesCollectionData = async (brandCoatDB) => {
