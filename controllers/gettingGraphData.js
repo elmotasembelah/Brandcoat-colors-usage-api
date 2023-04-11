@@ -16,12 +16,12 @@ const startDisplayGraph = async (req, res) => {
     );
     const countedColorsValues = Object.values(countedColors);
     const countedColorsNames = Object.keys(countedColors);
+
     res.status(StatusCodes.OK).json({
         countedColorsNames,
         countedColorsValues,
         histogramColors,
     });
-    // displayChart(datasets, industryName);
 };
 
 const prepareHistogramColors = (countedColors, colorsNamesAndHexValues) => {
@@ -34,9 +34,5 @@ const prepareHistogramColors = (countedColors, colorsNamesAndHexValues) => {
     });
     return histogramColors;
 };
-
-// const startDisplayGraph = (req, res) => {
-//     res.send("connected to gettingGraphData");
-// };
 
 module.exports = { startDisplayGraph };

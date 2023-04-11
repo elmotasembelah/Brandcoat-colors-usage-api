@@ -1,4 +1,6 @@
-const { getColorUsageGraphData } = require("./gettingColorUsageGraphData");
+const {
+    getColorUsageGraphData,
+} = require("./getAndPrepareColorUsageChartData");
 
 let countedColors = {
     Red: 0,
