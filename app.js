@@ -1,6 +1,6 @@
 require("dotenv");
 require("express-async-errors");
-const colorUsageGraphRouter = require("./routes/color_usage_graph.js");
+const chartsRouter = require("./routes/charts.js");
 const helmet = require("helmet");
 const cors = require("cors");
 const xss = require("xss-clean");
@@ -24,7 +24,7 @@ app.get("/api/", (req, res) => {
     res.send("connected");
 });
 
-app.use("/api/colorusagegraph", colorUsageGraphRouter);
+app.use("/api/charts", chartsRouter);
 
 app.use((req, res) => res.status(404).send("Route does not exist"));
 
@@ -34,7 +34,6 @@ const startServer = () => {
     try {
         app.listen(port, () => {
             console.log(`server is listening on port: ${port}`);
-            console.log("started");
         });
     } catch (error) {
         console.log(error);

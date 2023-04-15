@@ -2,18 +2,18 @@ const {
     getPostsCollectionData,
     filterPostsWithNoColors,
     getPostsColorsAndIndustryNames,
-} = require("./collectionsUtils/postsCollectionUtils");
+} = require("../collectionsUtils/postsCollectionUtils");
 
 const {
     getColorsCollectionData,
     getMainColorsData,
     removeColorByNameFromColorsCollectionData,
     filterColorsNamesAndHexvalues,
-} = require("./collectionsUtils/colorsCollectionUtils.js");
+} = require("../collectionsUtils/colorsCollectionUtils.js");
 
 const {
     getIndustriesCollectionData,
-} = require("./collectionsUtils/industriesCollectionUtils");
+} = require("../collectionsUtils/industriesCollectionUtils");
 
 const getColorUsageGraphData = async () => {
     let postsCollectionData = await getPostsCollectionData();

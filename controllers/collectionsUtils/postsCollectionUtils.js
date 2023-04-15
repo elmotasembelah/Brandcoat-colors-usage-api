@@ -29,7 +29,7 @@ const getPostsColorsAndIndustryNames = (
     postsCollectionData.forEach((postData) => {
         postsColorsAndIndustryNames.push({
             colors: getEachPostColorsNames(postData, colorsCollectionData),
-            industry: getEachPostIndustrysName(
+            industry: getEachPostIndustriesNames(
                 postData,
                 industriesCollectionData
             ),
@@ -50,7 +50,7 @@ const getEachPostColorsNames = (postData, colorsCollectionData) => {
 
     return postColorsNames;
 };
-const getEachPostIndustrysName = (postData, industriesCollectionData) => {
+const getEachPostIndustriesNames = (postData, industriesCollectionData) => {
     let postIndustryName = [];
     const industryValueKey = "industry-sector-2";
 
@@ -61,8 +61,22 @@ const getEachPostIndustrysName = (postData, industriesCollectionData) => {
     return postIndustryName;
 };
 
+const getAllPostsIndustriesNames = (
+    postsCollectionData,
+    industriesCollectionData
+) => {
+    let allPostsIndustriesNames = [];
+    postsCollectionData.forEach((postData) => {
+        allPostsIndustriesNames.push(
+            getEachPostIndustriesNames(postData, industriesCollectionData)
+        );
+    });
+    return allPostsIndustriesNames;
+};
+
 module.exports = {
     getPostsCollectionData,
     filterPostsWithNoColors,
     getPostsColorsAndIndustryNames,
+    getAllPostsIndustriesNames,
 };

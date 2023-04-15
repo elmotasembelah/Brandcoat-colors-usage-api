@@ -32,8 +32,8 @@ const startCounting = async (req, res, industryFilter) => {
             industryFilter
         );
     }
-
     countingPosts(postsColorsAndIndustryNames);
+    // console.log(countedColors, colorsNamesAndHexValues);
     return { countedColors, colorsNamesAndHexValues };
 };
 
