@@ -10,4 +10,11 @@ const getIndustriesCollectionData = async (brandCoatDB) => {
     return industriesCollectionData;
 };
 
-module.exports = { getIndustriesCollectionData };
+const getMainMenuIndusries = (industriesCollectionData) => {
+    const mainMenuKey = "main-menu";
+    const mainMenuIndusries = industriesCollectionData.filter((industry) => {
+        return industry[mainMenuKey];
+    });
+    return mainMenuIndusries;
+};
+module.exports = { getIndustriesCollectionData, getMainMenuIndusries };
