@@ -1,7 +1,8 @@
 const {
     getPostsCollectionData,
     filterPostsWithNoColors,
-    getPostsColorsAndIndustryNames,
+    getPostsColors,
+    filterPostsBasedOnIndustry,
 } = require("../collectionsUtils/postsCollectionUtils");
 
 const {
@@ -15,7 +16,7 @@ const {
     getIndustriesCollectionData,
 } = require("../collectionsUtils/industriesCollectionUtils");
 
-const getColorUsageGraphData = async () => {
+const getColorUsageGraphData = async (industryFilter) => {
     let postsCollectionData = await getPostsCollectionData();
     postsCollectionData = filterPostsWithNoColors(postsCollectionData);
 
@@ -28,11 +29,19 @@ const getColorUsageGraphData = async () => {
 
     let industriesCollectionData = await getIndustriesCollectionData();
 
-    const postsColorsAndIndustryNames = getPostsColorsAndIndustryNames(
+    if (industryFilter !== "All industries") {
+        postsCollectionData = filterPostsBasedOnIndustry(
+            postsCollectionData,
+            industriesCollectionData,
+            industryFilter
+        );
+    }
+
+    let postsColorsAndIndustryNames = getPostsColors(
         postsCollectionData,
-        colorsCollectionData,
-        industriesCollectionData
+        colorsCollectionData
     );
+
     const colorsNamesAndHexValues =
         filterColorsNamesAndHexvalues(colorsCollectionData);
 

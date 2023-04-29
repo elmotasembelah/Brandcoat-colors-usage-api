@@ -2,7 +2,7 @@ const { getCollectionDataById } = require("../databaseUtils/databaseUtils");
 
 let industriesCollectionData;
 
-const getIndustriesCollectionData = async (brandCoatDB) => {
+const getIndustriesCollectionData = async () => {
     if (!industriesCollectionData)
         industriesCollectionData = await getCollectionDataById(
             "63dd4fc33d98e62032c43f3b"

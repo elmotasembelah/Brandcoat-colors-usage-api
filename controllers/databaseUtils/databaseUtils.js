@@ -49,17 +49,16 @@ const getAllCollectionData = async (collection) => {
     return totalCollectionData;
 };
 
-const getIndustriesCollectionData = async () => {
-    const BRANDCOATDB = getBRANDCOATDB();
-    if (!industriesCollectionData) {
-        industriesCollectionData = getCollectionDataById(
-            "63dd4fc33d98e62032c43f3b"
-        );
+const getBrandCoatCollectionsData = async () => {
+    if (!BRANDCOATDB) {
+        await connectToSite();
     }
-    return industriesCollectionData;
+    const collectionData = await BRANDCOATDB.collections();
+    return collectionData;
 };
 
 module.exports = {
     // getBRANDCOATDB,
     getCollectionDataById,
+    getBrandCoatCollectionsData,
 };

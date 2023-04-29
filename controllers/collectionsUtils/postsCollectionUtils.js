@@ -19,23 +19,15 @@ const filterPostsWithNoColors = (postsCollectionData) => {
     return coloredPostsData;
 };
 
-const getPostsColorsAndIndustryNames = (
-    postsCollectionData,
-    colorsCollectionData,
-    industriesCollectionData
-) => {
-    let postsColorsAndIndustryNames = [];
+const getPostsColors = (postsCollectionData, colorsCollectionData) => {
+    let postsColors = [];
 
     postsCollectionData.forEach((postData) => {
-        postsColorsAndIndustryNames.push({
+        postsColors.push({
             colors: getEachPostColorsNames(postData, colorsCollectionData),
-            industry: getEachPostIndustriesNames(
-                postData,
-                industriesCollectionData
-            ),
         });
     });
-    return postsColorsAndIndustryNames;
+    return postsColors;
 };
 
 const getEachPostColorsNames = (postData, colorsCollectionData) => {
@@ -74,9 +66,67 @@ const getAllPostsIndustriesNames = (
     return allPostsIndustriesNames;
 };
 
+const filterPostsBasedOnIndustry = (
+    postsCollectionData,
+    industriesCollectionData,
+    industryFilter
+) => {
+    let filteredPosts = postsCollectionData.filter((post) => {
+        postIndustry = getEachPostIndustriesNames(
+            post,
+            industriesCollectionData
+        );
+        if (postIndustry[0] === industryFilter) {
+            return post;
+        }
+    });
+    return filteredPosts;
+};
+
+const getPostsOldDesignDateAndNewDesignDate = (
+    postsCollectionData,
+    options = {}
+) => {
+    const { lastPartInDateFormat } = options;
+    let lastPartInDateFormatIndex;
+    switch (lastPartInDateFormat) {
+        case "year":
+            lastPartInDateFormatIndex = 4;
+            break;
+        case "month":
+            lastPartInDateFormatIndex = 7;
+            break;
+        case "day":
+            lastPartInDateFormatIndex = 10;
+            break;
+        default:
+            lastPartInDateFormatIndex = 24;
+    }
+    const postsOldDesignDateAndNewDesignData = [];
+    const oldDesignDateKey = "old-logo-relese-date";
+    const newDesignDateKey = "date";
+    postsCollectionData.forEach((postData) => {
+        if (postData[oldDesignDateKey] && postData[newDesignDateKey])
+            postsOldDesignDateAndNewDesignData.push({
+                name: postData.name,
+                oldDesignDate: postData[oldDesignDateKey].substring(
+                    0,
+                    lastPartInDateFormatIndex
+                ),
+                newDesignDate: postData[newDesignDateKey].substring(
+                    0,
+                    lastPartInDateFormatIndex
+                ),
+            });
+    });
+    return postsOldDesignDateAndNewDesignData;
+};
+
 module.exports = {
     getPostsCollectionData,
     filterPostsWithNoColors,
-    getPostsColorsAndIndustryNames,
+    getPostsColors,
     getAllPostsIndustriesNames,
+    filterPostsBasedOnIndustry,
+    getPostsOldDesignDateAndNewDesignDate,
 };

@@ -5,8 +5,6 @@ const startDisplayGraph = async (req, res) => {
     const { industryfilter } = req.headers;
 
     const { countedColors, colorsNamesAndHexValues } = await startCounting(
-        req,
-        res,
         industryfilter
     );
 
