@@ -3,7 +3,7 @@ const {
     startCalculatingLogoChangeFrequency,
 } = require("./calculateLogoChangeFrequency");
 
-const startGettingLogoChangeFrequencyChartData = async (req, res) => {
+const startLogoChangeFrequencyChart = async (req, res) => {
     const { industryfilter } = req.headers;
 
     const countedYears = await startCalculatingLogoChangeFrequency(
@@ -21,4 +21,4 @@ const startGettingLogoChangeFrequencyChartData = async (req, res) => {
     });
 };
 
-module.exports = { startGettingLogoChangeFrequencyChartData };
+module.exports = { startLogoChangeFrequencyChart };

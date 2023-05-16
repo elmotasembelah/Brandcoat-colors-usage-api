@@ -2,21 +2,24 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    startDisplayGraph,
-} = require("../controllers/colorUsageChart/gettingGraphData");
+    startColorUsageChart,
+} = require("../controllers/colorUsageChart/startColorUsageChart");
 
 const {
     startPostsPerIndustryChart,
-} = require("../controllers/postsPerIndustryChart/startGettingPostsPerIndustryChartData");
+} = require("../controllers/postsPerIndustryChart/startPostsPerIndustryChart");
 
 const {
-    startGettingLogoChangeFrequencyChartData,
-} = require("../controllers/logoChangeFrequencyChart/startGettingLogoChangeFrequencyChartData");
+    startLogoChangeFrequencyChart,
+} = require("../controllers/logoChangeFrequencyChart/startLogoChangeFrequencyChart");
 
-router.route("/colorusage").get(startDisplayGraph);
+const {
+    startElementsUsageChart,
+} = require("../controllers/ElementalUsageChart/startElementsUsageChart");
+
+router.route("/colorusage").get(startColorUsageChart);
 router.route("/postsperindustry").get(startPostsPerIndustryChart);
-router
-    .route("/logochangefrequency")
-    .get(startGettingLogoChangeFrequencyChartData);
+router.route("/logochangefrequency").get(startLogoChangeFrequencyChart);
+router.route("/elementsusage").get(startElementsUsageChart);
 
 module.exports = router;

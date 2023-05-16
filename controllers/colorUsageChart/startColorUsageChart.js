@@ -1,9 +1,8 @@
 const { startCounting } = require("./countingPosts");
 const { StatusCodes } = require("http-status-codes");
 
-const startDisplayGraph = async (req, res) => {
+const startColorUsageChart = async (req, res) => {
     const { industryfilter } = req.headers;
-
     const { countedColors, colorsNamesAndHexValues } = await startCounting(
         industryfilter
     );
@@ -33,4 +32,4 @@ const prepareHistogramColors = (countedColors, colorsNamesAndHexValues) => {
     return histogramColors;
 };
 
-module.exports = { startDisplayGraph };
+module.exports = { startColorUsageChart };

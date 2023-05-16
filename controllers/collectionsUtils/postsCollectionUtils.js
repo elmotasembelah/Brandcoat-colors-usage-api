@@ -122,6 +122,22 @@ const getPostsOldDesignDateAndNewDesignDate = (
     return postsOldDesignDateAndNewDesignData;
 };
 
+const getElementsIdsOfColorsInPosts = (postsData, colorsData) => {
+    const elementKey = "traditional-color-category";
+    let elementsIdsOfColorsInPosts = [];
+    const colorKey = "logo-color-palette";
+    postsData.forEach((post) => {
+        post[colorKey].forEach((postColor) => {
+            colorsData.forEach((color) => {
+                if (postColor === color._id) {
+                    elementsIdsOfColorsInPosts.push(color[elementKey]);
+                }
+            });
+        });
+    });
+    return elementsIdsOfColorsInPosts;
+};
+
 module.exports = {
     getPostsCollectionData,
     filterPostsWithNoColors,
@@ -129,4 +145,5 @@ module.exports = {
     getAllPostsIndustriesNames,
     filterPostsBasedOnIndustry,
     getPostsOldDesignDateAndNewDesignDate,
+    getElementsIdsOfColorsInPosts,
 };

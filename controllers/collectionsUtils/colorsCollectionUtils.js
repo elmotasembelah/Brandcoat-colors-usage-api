@@ -45,9 +45,29 @@ const filterColorsNamesAndHexvalues = (colorsData) => {
     return colorsNamesAndHexValues;
 };
 
+const getColorsElementsAndIds = (colorsData) => {
+    const elementKey = "traditional-color-category";
+    const colorNameAndElement = [];
+    colorsData.forEach((color) => {
+        colorNameAndElement.push({
+            name: color.name,
+            colorId: color._id,
+            element: color[elementKey],
+        });
+    });
+    return colorNameAndElement;
+};
+
+const getColorElement = (color) => {
+    const elementKey = "traditional-color-category";
+    return color[elementKey];
+};
+
 module.exports = {
     getColorsCollectionData,
     getMainColorsData,
     removeColorByNameFromColorsCollectionData,
     filterColorsNamesAndHexvalues,
+    getColorsElementsAndIds,
+    getColorElement,
 };
