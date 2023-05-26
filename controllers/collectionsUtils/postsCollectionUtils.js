@@ -185,9 +185,6 @@ const filterPostsBasedOnAgency = (
         );
 
         postCreators.forEach((postCreator) => {
-            if (postCreator === "Behalf") {
-                console.log(postCreator);
-            }
             if (postCreator === agencyFilter) {
                 filteredPosts.push(postData);
             }
