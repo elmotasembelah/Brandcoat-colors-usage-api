@@ -42,16 +42,6 @@ const getEachPostColorsNames = (postData, colorsCollectionData) => {
 
     return postColorsNames;
 };
-const getEachPostIndustriesNames = (postData, industriesCollectionData) => {
-    let postIndustryName = [];
-    const industryValueKey = "industry-sector-2";
-
-    industriesCollectionData.forEach((industryData) => {
-        if (postData[industryValueKey] === industryData._id)
-            postIndustryName.push(industryData.name);
-    });
-    return postIndustryName;
-};
 
 const getAllPostsIndustriesNames = (
     postsCollectionData,
@@ -66,13 +56,24 @@ const getAllPostsIndustriesNames = (
     return allPostsIndustriesNames;
 };
 
+const getEachPostIndustriesNames = (postData, industriesCollectionData) => {
+    let postIndustryName = [];
+    const industryValueKey = "industry-sector-2";
+
+    industriesCollectionData.forEach((industryData) => {
+        if (postData[industryValueKey] === industryData._id)
+            postIndustryName.push(industryData.name);
+    });
+    return postIndustryName;
+};
+
 const filterPostsBasedOnIndustry = (
     postsCollectionData,
     industriesCollectionData,
     industryFilter
 ) => {
     let filteredPosts = postsCollectionData.filter((post) => {
-        postIndustry = getEachPostIndustriesNames(
+        const postIndustry = getEachPostIndustriesNames(
             post,
             industriesCollectionData
         );
@@ -123,14 +124,16 @@ const getPostsOldDesignDateAndNewDesignDate = (
 };
 
 const getElementsIdsOfColorsInPosts = (postsData, colorsData) => {
-    const elementKey = "traditional-color-category";
-    let elementsIdsOfColorsInPosts = [];
     const colorKey = "logo-color-palette";
+    const elementKey = "elements";
+    let elementsIdsOfColorsInPosts = [];
     postsData.forEach((post) => {
         post[colorKey].forEach((postColor) => {
             colorsData.forEach((color) => {
                 if (postColor === color._id) {
-                    elementsIdsOfColorsInPosts.push(color[elementKey]);
+                    color[elementKey].forEach((element) => {
+                        elementsIdsOfColorsInPosts.push(element);
+                    });
                 }
             });
         });
@@ -138,12 +141,112 @@ const getElementsIdsOfColorsInPosts = (postsData, colorsData) => {
     return elementsIdsOfColorsInPosts;
 };
 
+const filterPostsWithNoAgencies = (postsCollectionData) => {
+    let postsWithAgencies = [];
+    postsCollectionData.filter((postData) => {
+        if (
+            postData.creator &&
+            postData.creator[0] &&
+            postData.creator[0] !== "63dd4fc33d98e6c584c440e2" &&
+            postData.creator[0] !== "63dd4fc33d98e610b9c4423f"
+        ) {
+            postsWithAgencies.push(postData);
+        }
+    });
+    return postsWithAgencies;
+};
+
+const filterPostsBasedOnAgency = (
+    postsCollectionData,
+    creatorsCollectionData,
+    agencyFilter
+) => {
+    let filteredPosts = [];
+    postsCollectionData.forEach((postData) => {
+        const postCreators = getEachPostCreators(
+            postData,
+            creatorsCollectionData
+        );
+
+        postCreators.forEach((postCreator) => {
+            if (postCreator === agencyFilter) {
+                filteredPosts.push(postData);
+            }
+        });
+    });
+    return filteredPosts;
+};
+
+const getEachPostCreators = (postData, creatorsCollectionData) => {
+    let matchedAgencies = [];
+
+    creatorsCollectionData.forEach((creatorData) => {
+        const postCreators = postData.creator;
+        postCreators.forEach((creator) => {
+            if (creatorData._id === creator) {
+                matchedAgencies.push(creatorData.name);
+            }
+        });
+    });
+    return matchedAgencies;
+};
+
+const filterPostsWithNoDesignApprouches = (postsCollectionData) => {
+    const colorValueKey = "types-of-logo-2";
+    const coloredPostsData = postsCollectionData.filter((post) => {
+        return post[colorValueKey];
+    });
+    return coloredPostsData;
+};
+
+const getAllPostsDesignApprouchessNames = (
+    postsCollectionData,
+    designApprouchesCollectionData
+) => {
+    let allPostsDesignApprouchesNames = [];
+    postsCollectionData.forEach((postData) => {
+        allPostsDesignApprouchesNames.push(
+            getEachPostDesignApprouchesNames(
+                postData,
+                designApprouchesCollectionData
+            )
+        );
+    });
+    return allPostsDesignApprouchesNames;
+};
+
+const getEachPostDesignApprouchesNames = (
+    postData,
+    designApprouchesCollectionData
+) => {
+    let postDesignApprouchesNames = [];
+    const designApprouchValueKey = "types-of-logo-2";
+
+    designApprouchesCollectionData.forEach((designApprouchData) => {
+        const postDesignApprouches = postData[designApprouchValueKey];
+        postDesignApprouches.forEach((postDesignApprouch) => {
+            if (postDesignApprouch === "Animated") {
+            }
+            if (postDesignApprouch === designApprouchData._id)
+                postDesignApprouchesNames.push(designApprouchData.name);
+        });
+    });
+    return postDesignApprouchesNames;
+};
+
 module.exports = {
     getPostsCollectionData,
     filterPostsWithNoColors,
     getPostsColors,
     getAllPostsIndustriesNames,
+    getEachPostIndustriesNames,
     filterPostsBasedOnIndustry,
     getPostsOldDesignDateAndNewDesignDate,
     getElementsIdsOfColorsInPosts,
+    filterPostsWithNoAgencies,
+    filterPostsBasedOnAgency,
+    getEachPostCreators,
+    filterPostsWithNoDesignApprouches,
+    getAllPostsDesignApprouchessNames,
+    getEachPostDesignApprouchesNames,
 };

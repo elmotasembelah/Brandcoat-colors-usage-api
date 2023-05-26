@@ -2,9 +2,9 @@ const {
     getAndPrepareElementalUsageChartData,
 } = require("./getAndPrepareElementalUsageChartData");
 
-const countElements = async () => {
+const countElements = async (industryFilter) => {
     const elementsIdsOfColorsInPosts =
-        await getAndPrepareElementalUsageChartData();
+        await getAndPrepareElementalUsageChartData(industryFilter);
 
     const countedElements = startCountingElements(elementsIdsOfColorsInPosts);
 

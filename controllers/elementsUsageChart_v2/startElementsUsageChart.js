@@ -1,28 +1,33 @@
 const { countElements } = require("./countElements");
 const { StatusCodes } = require("http-status-codes");
 
-const startElementsUsageChart = async (req, res) => {
-    const countedElements = await countElements();
+const startElementsUsageChart_v2 = async (req, res) => {
+    const { industryfilter } = req.headers;
+
+    const countedElements = await countElements(industryfilter);
 
     const elementsNames = Object.keys(countedElements);
     const amountoFCountedElements = Object.values(countedElements);
-    const dataSetColor = "rgb(18, 18, 31)";
-    const dataSetLightColor = "rgba(18,18,31,0.2)";
+    const backgroundColor = [
+        "#E91d14",
+        "#0080ff",
+        "#F6B600",
+        "#00AC00",
+        "#999EA1",
+    ];
 
     res.status(StatusCodes.OK).json(
         (data = {
             labels: elementsNames,
             dataSets: [
                 {
-                    label: " Elements Usage in All Industries",
+                    label: `Elements Usage in ${industryfilter}`,
                     data: amountoFCountedElements,
-                    dataSetColor,
-                    dataSetLightColor,
-                    visible: true,
+                    backgroundColor: backgroundColor,
                 },
             ],
         })
     );
 };
 
-module.exports = { startElementsUsageChart };
+module.exports = { startElementsUsageChart_v2 };

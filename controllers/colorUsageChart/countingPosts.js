@@ -3,11 +3,18 @@ const {
 } = require("./getAndPrepareColorUsageChartData");
 
 const startCounting = async (industryFilter) => {
-    let { postsColorsAndIndustryNames, colorsNamesAndHexValues } =
-        await getColorUsageGraphData(industryFilter);
+    let {
+        postsColorsAndIndustryNames,
+        colorsNamesAndHexValues,
+        INDUSTRYLISTFORFILTERMENU,
+    } = await getColorUsageGraphData(industryFilter);
 
     const countedColors = countingPosts(postsColorsAndIndustryNames);
-    return { countedColors, colorsNamesAndHexValues };
+    return {
+        countedColors,
+        colorsNamesAndHexValues,
+        INDUSTRYLISTFORFILTERMENU,
+    };
 };
 
 const countingPosts = (postsColorsAndIndustryNames) => {

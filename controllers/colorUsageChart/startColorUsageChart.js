@@ -3,9 +3,11 @@ const { StatusCodes } = require("http-status-codes");
 
 const startColorUsageChart = async (req, res) => {
     const { industryfilter } = req.headers;
-    const { countedColors, colorsNamesAndHexValues } = await startCounting(
-        industryfilter
-    );
+    const {
+        countedColors,
+        colorsNamesAndHexValues,
+        INDUSTRYLISTFORFILTERMENU,
+    } = await startCounting(industryfilter);
 
     const histogramColors = prepareHistogramColors(
         countedColors,
@@ -18,6 +20,7 @@ const startColorUsageChart = async (req, res) => {
         countedColorsNames,
         countedColorsValues,
         histogramColors,
+        INDUSTRYLISTFORFILTERMENU,
     });
 };
 

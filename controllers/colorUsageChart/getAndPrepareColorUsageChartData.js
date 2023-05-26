@@ -3,6 +3,7 @@ const {
     filterPostsWithNoColors,
     getPostsColors,
     filterPostsBasedOnIndustry,
+    getEachPostIndustriesNames,
 } = require("../collectionsUtils/postsCollectionUtils");
 
 const {
@@ -15,6 +16,8 @@ const {
 const {
     getIndustriesCollectionData,
 } = require("../collectionsUtils/industriesCollectionUtils");
+
+let INDUSTRYLISTFORFILTERMENU = "";
 
 const getColorUsageGraphData = async (industryFilter) => {
     let postsCollectionData = await getPostsCollectionData();
@@ -35,6 +38,11 @@ const getColorUsageGraphData = async (industryFilter) => {
             industriesCollectionData,
             industryFilter
         );
+    } else if (INDUSTRYLISTFORFILTERMENU === "") {
+        INDUSTRYLISTFORFILTERMENU = getUniqueIndustriesFromPosts(
+            industriesCollectionData,
+            postsCollectionData
+        );
     }
 
     let postsColorsAndIndustryNames = getPostsColors(
@@ -48,7 +56,27 @@ const getColorUsageGraphData = async (industryFilter) => {
     return {
         postsColorsAndIndustryNames,
         colorsNamesAndHexValues,
+        INDUSTRYLISTFORFILTERMENU,
     };
+};
+
+const getUniqueIndustriesFromPosts = (
+    industriesCollectionData,
+    postsCollectionData
+) => {
+    let uniqueIndustriesFromPosts = [];
+    postsCollectionData.forEach((postData) => {
+        const industriesNames = getEachPostIndustriesNames(
+            postData,
+            industriesCollectionData
+        );
+        if (
+            !uniqueIndustriesFromPosts.includes(industriesNames[0]) &&
+            industriesNames[0] !== "ABs & Nightlife"
+        )
+            uniqueIndustriesFromPosts.push(industriesNames[0]);
+    });
+    return uniqueIndustriesFromPosts.sort();
 };
 
 module.exports = { getColorUsageGraphData };
