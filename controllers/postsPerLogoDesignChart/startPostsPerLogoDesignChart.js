@@ -12,6 +12,7 @@ const startPostsPerDesignApprouchChart = async (req, res) => {
     const countedDesignApprouchesValues = Object.values(
         countedDesignApprouches
     );
+
     const chartColor = "#12121f";
 
     res.status(StatusCodes.OK).json({

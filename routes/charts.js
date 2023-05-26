@@ -29,13 +29,21 @@ const {
     startPostsPerDesignApprouchChart,
 } = require("../controllers/postsPerLogoDesignChart/startPostsPerLogoDesignChart");
 
+const {
+    getAndPreparePostsWIthNoAgenciesChartData,
+} = require("../controllers/postsWithNoAgenciesChart/getAndPreparePostsWithNoAgenciesChartData");
+
 router.route("/colorusage").get(startColorUsageChart);
 router.route("/postsperindustry").get(startPostsPerIndustryChart);
 router.route("/logochangefrequency").get(startLogoChangeFrequencyChart);
-router.route("/Elementsusagev1").get(startElementsUsageChart_v1);
+router.route("/elementsusagev1").get(startElementsUsageChart_v1);
 router.route("/elementsusage").get(startElementsUsageChart_v2);
 router
     .route("/agenciespostsperindustry")
     .get(startAgenciesPostsPerIndustryChart);
 router.route("/postsperlogoDesign").get(startPostsPerDesignApprouchChart);
+router
+    .route("/postswithnoagencies")
+    .get(getAndPreparePostsWIthNoAgenciesChartData);
+
 module.exports = router;

@@ -2,6 +2,7 @@ const {
     getPostsCollectionData,
     filterPostsWithNoColors,
     filterPostsBasedOnIndustry,
+    getElementsIdsOfColorsInPostsOld,
     getElementsIdsOfColorsInPosts,
 } = require("../collectionsUtils/postsCollectionUtils");
 
@@ -32,8 +33,7 @@ const getAndPrepareElementalUsageChartData = async (industryFilter) => {
     const colorsCollectionData = await getColorsCollectionData();
     const mainColorsData = await getMainColorsData(colorsCollectionData);
 
-    // ! this function has changed ( elemensKey was traditional-color-category )
-    const elementsIdsOfColorsInPosts = getElementsIdsOfColorsInPosts(
+    const elementsIdsOfColorsInPosts = getElementsIdsOfColorsInPostsOld(
         postsWithColors,
         mainColorsData
     );

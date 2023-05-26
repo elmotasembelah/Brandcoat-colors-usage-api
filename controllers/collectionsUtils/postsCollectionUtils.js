@@ -123,6 +123,22 @@ const getPostsOldDesignDateAndNewDesignDate = (
     return postsOldDesignDateAndNewDesignData;
 };
 
+// ! this function is old needs to be merged with the function after it or to be removed since it uses an outdated key
+const getElementsIdsOfColorsInPostsOld = (postsData, colorsData) => {
+    const colorKey = "logo-color-palette";
+    const elementKey = "traditional-color-category";
+    let elementsIdsOfColorsInPosts = [];
+    postsData.forEach((post) => {
+        post[colorKey].forEach((postColor) => {
+            colorsData.forEach((color) => {
+                if (postColor === color._id) {
+                    elementsIdsOfColorsInPosts.push(color[elementKey]);
+                }
+            });
+        });
+    });
+    return elementsIdsOfColorsInPosts;
+};
 const getElementsIdsOfColorsInPosts = (postsData, colorsData) => {
     const colorKey = "logo-color-palette";
     const elementKey = "elements";
@@ -169,6 +185,9 @@ const filterPostsBasedOnAgency = (
         );
 
         postCreators.forEach((postCreator) => {
+            if (postCreator === "Behalf") {
+                console.log(postCreator);
+            }
             if (postCreator === agencyFilter) {
                 filteredPosts.push(postData);
             }
@@ -242,6 +261,7 @@ module.exports = {
     getEachPostIndustriesNames,
     filterPostsBasedOnIndustry,
     getPostsOldDesignDateAndNewDesignDate,
+    getElementsIdsOfColorsInPostsOld,
     getElementsIdsOfColorsInPosts,
     filterPostsWithNoAgencies,
     filterPostsBasedOnAgency,

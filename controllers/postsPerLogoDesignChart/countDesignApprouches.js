@@ -36,10 +36,6 @@ const countDesignApprouches = (
             if (countedDesignApprouchesKeys.includes(postDesignApprouchName)) {
                 countedDesignApprouches[postDesignApprouchName]++;
             }
-            // switch(postDesignApprouchName) {
-            //     case "Emblem":
-            //         countedDesignApprouches.
-            // }
         });
     });
 };

@@ -8,7 +8,7 @@ const startAgenciesPostsPerIndustryChart = async (req, res) => {
 
     const industriesNames = Object.keys(countedIndustries);
     const amountOfCountedPosts = Object.values(countedIndustries);
-    const chartColors = "#12121f";
+    const chartColors = "#999EA1";
 
     res.status(StatusCodes.OK).json({
         industriesNames,

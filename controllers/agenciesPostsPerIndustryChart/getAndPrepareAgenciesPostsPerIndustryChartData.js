@@ -16,6 +16,7 @@ const {
 } = require("../collectionsUtils/creatorsCollectionUtils");
 
 const getAndPrepareAgenciesPostsPerIndustry = async (agencyFilter) => {
+    console.log("filter is : ", agencyFilter);
     let postsCollectionData = await getPostsCollectionData();
     postsCollectionData = filterPostsWithNoAgencies(postsCollectionData);
     const creatorsCollectionData = await getCreatorsCollectionData();
