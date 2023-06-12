@@ -3,7 +3,6 @@ const {
     filterPostsWithNoAgencies,
     getAllPostsIndustriesNames,
     filterPostsBasedOnAgency,
-    getEachPostCreators,
 } = require("../collectionsUtils/postsCollectionUtils");
 
 const {
@@ -17,6 +16,7 @@ const {
 
 const getAndPrepareAgenciesPostsPerIndustry = async (agencyFilter) => {
     let postsCollectionData = await getPostsCollectionData();
+
     postsCollectionData = filterPostsWithNoAgencies(postsCollectionData);
     const creatorsCollectionData = await getCreatorsCollectionData();
 

@@ -123,6 +123,33 @@ const getPostsOldDesignDateAndNewDesignDate = (
     return postsOldDesignDateAndNewDesignData;
 };
 
+const getPostsLatestBrandingDate = (postsCollectionData, options) => {
+    const { lastPartInDateFormat } = options;
+    let lastPartInDateFormatIndex;
+    switch (lastPartInDateFormat) {
+        case "year":
+            lastPartInDateFormatIndex = 4;
+            break;
+        case "month":
+            lastPartInDateFormatIndex = 7;
+            break;
+        case "day":
+            lastPartInDateFormatIndex = 10;
+            break;
+        default:
+            lastPartInDateFormatIndex = 24;
+    }
+    let postsLatestBrandingDate = [];
+    postsCollectionData.forEach((postData) => {
+        if (postData.date) {
+            postsLatestBrandingDate.push(
+                postData.date.substring(0, lastPartInDateFormatIndex)
+            );
+        }
+    });
+    return postsLatestBrandingDate;
+};
+
 // ! this function is old needs to be merged with the function after it or to be removed since it uses an outdated key
 const getElementsIdsOfColorsInPostsOld = (postsData, colorsData) => {
     const colorKey = "logo-color-palette";
@@ -258,6 +285,7 @@ module.exports = {
     getEachPostIndustriesNames,
     filterPostsBasedOnIndustry,
     getPostsOldDesignDateAndNewDesignDate,
+    getPostsLatestBrandingDate,
     getElementsIdsOfColorsInPostsOld,
     getElementsIdsOfColorsInPosts,
     filterPostsWithNoAgencies,
