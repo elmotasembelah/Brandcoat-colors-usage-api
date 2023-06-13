@@ -268,13 +268,31 @@ const getEachPostDesignApprouchesNames = (
     designApprouchesCollectionData.forEach((designApprouchData) => {
         const postDesignApprouches = postData[designApprouchValueKey];
         postDesignApprouches.forEach((postDesignApprouch) => {
-            if (postDesignApprouch === "Animated") {
-            }
             if (postDesignApprouch === designApprouchData._id)
                 postDesignApprouchesNames.push(designApprouchData.name);
         });
     });
     return postDesignApprouchesNames;
+};
+
+const filterPostsBasedDesignApprouch = (
+    postsCollectionData,
+    designApprouchesCollectionData,
+    designApprouchFilter
+) => {
+    let filteredPosts = [];
+    postsCollectionData.forEach((post) => {
+        const postDesignApprouch = getEachPostDesignApprouchesNames(
+            post,
+            designApprouchesCollectionData
+        );
+        postDesignApprouch.forEach((designApprouch) => {
+            if (designApprouch === designApprouchFilter) {
+                filteredPosts.push(post);
+            }
+        });
+    });
+    return filteredPosts;
 };
 
 module.exports = {
@@ -294,4 +312,5 @@ module.exports = {
     filterPostsWithNoDesignApprouches,
     getAllPostsDesignApprouchessNames,
     getEachPostDesignApprouchesNames,
+    filterPostsBasedDesignApprouch,
 };

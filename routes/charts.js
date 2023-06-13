@@ -37,6 +37,10 @@ const {
     startPostsPerYearChart,
 } = require("../controllers/postsPerYearChart/startPostsPerYearChart");
 
+const {
+    startDesignApprouchUsagePerYearChart,
+} = require("../controllers/designApprouchUsagePerYearChart/startDesignApprouchUsagePerYearChart");
+
 router.route("/colorusage").get(startColorUsageChart);
 router.route("/postsperindustry").get(startPostsPerIndustryChart);
 router.route("/logochangefrequency").get(startLogoChangeFrequencyChart);
@@ -50,5 +54,8 @@ router
     .route("/postswithnoagencies")
     .get(getAndPreparePostsWIthNoAgenciesChartData);
 router.route("/postsperyear").get(startPostsPerYearChart);
+router
+    .route("/logodesignusageperyear")
+    .get(startDesignApprouchUsagePerYearChart);
 
 module.exports = router;
