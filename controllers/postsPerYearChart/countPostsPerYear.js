@@ -7,8 +7,6 @@ const startCount = async () => {
 
     let countedPostsPerYear = countPostsPerYears(postsLatestBrandingYear);
 
-    // console.log(countedPostsPerYear);
-
     return countedPostsPerYear;
 };
 

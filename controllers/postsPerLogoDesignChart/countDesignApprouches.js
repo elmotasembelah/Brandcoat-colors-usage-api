@@ -4,7 +4,6 @@ const {
 
 const startCountDesignApprouches = async (industryFilter) => {
     let countedDesignApprouches = {
-        Animated: 0,
         "Combination mark": 0,
         Emblem: 0,
         Lettermark: 0,
