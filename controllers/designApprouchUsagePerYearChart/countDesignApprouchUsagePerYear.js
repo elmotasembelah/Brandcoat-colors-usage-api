@@ -17,10 +17,15 @@ const countDesignApprouchUsagePerYear = (
     filteredPostsBasedOnDesignApprouchFilterLatestBrandingYear
 ) => {
     let countedDesignApprouchUsagePerYear = {};
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
 
     filteredPostsBasedOnDesignApprouchFilterLatestBrandingYear.forEach(
         (filteredPostLatestBrandingYear) => {
-            if (filteredPostLatestBrandingYear >= 2018) {
+            if (
+                filteredPostLatestBrandingYear >= 2018 &&
+                filteredPostLatestBrandingYear < currentYear
+            ) {
                 countedDesignApprouchUsagePerYear[
                     filteredPostLatestBrandingYear
                 ]
