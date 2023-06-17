@@ -21,7 +21,7 @@ const startElementsUsageChart_v2 = async (req, res) => {
             labels: elementsNames,
             dataSets: [
                 {
-                    label: `Wuxing Five Elements in ${industryfilter}`,
+                    label: `Wuxing five elements in ${industryfilter}`,
                     data: amountoFCountedElements,
                     backgroundColor: backgroundColor,
                 },
