@@ -22,19 +22,19 @@ const startCountingElements = (elementsIdsOfColorsInPosts) => {
 
     elementsIdsOfColorsInPosts.forEach((elementId) => {
         switch (elementId) {
-            case "6466901e48c87344a544e271":
+            case "648fcf71981e8ad8659ee1bc":
                 countedElements.Fire++;
                 break;
-            case "6466901e48c87344a544e26e":
+            case "648fcf71981e8ad8659ee1b8":
                 countedElements.Water++;
                 break;
-            case "6466901e48c87344a544e270":
+            case "648fcf71981e8ad8659ee1ba":
                 countedElements.Earth++;
                 break;
-            case "6466901e48c87344a544e26f":
+            case "648fcf71981e8ad8659ee1b9":
                 countedElements.Wood++;
                 break;
-            case "6466901e48c87344a544e26d":
+            case "648fcf71981e8ad8659ee1b7":
                 countedElements.Metal++;
                 break;
             default:

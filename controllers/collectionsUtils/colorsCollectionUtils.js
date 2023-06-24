@@ -5,7 +5,7 @@ let colorsCollectionData;
 const getColorsCollectionData = async () => {
     if (!colorsCollectionData) {
         colorsCollectionData = await getCollectionDataById(
-            "63dd4fc33d98e609bbc43f39"
+            "648fcf71981e8ad8659ede5e"
         );
     }
     return colorsCollectionData;

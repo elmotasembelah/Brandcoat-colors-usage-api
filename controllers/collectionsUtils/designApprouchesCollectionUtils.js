@@ -5,7 +5,7 @@ let designApprouchesCollectionData;
 const getDesignApprouchesCollectionData = async () => {
     if (!designApprouchesCollectionData) {
         designApprouchesCollectionData = await getCollectionDataById(
-            "63dd4fc33d98e679d3c43f3e"
+            "648fcf71981e8ad8659edecf"
         );
     }
     return designApprouchesCollectionData;

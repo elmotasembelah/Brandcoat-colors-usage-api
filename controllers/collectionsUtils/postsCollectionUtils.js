@@ -5,7 +5,7 @@ let postsCollectionData;
 const getPostsCollectionData = async () => {
     if (!postsCollectionData) {
         postsCollectionData = await getCollectionDataById(
-            "63dd4fc33d98e6335ac43f3c"
+            "648fcf71981e8ad8659ede97"
         );
     }
     return postsCollectionData;

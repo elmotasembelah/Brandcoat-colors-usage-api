@@ -5,7 +5,7 @@ let creatorsCollectionData;
 const getCreatorsCollectionData = async () => {
     if (!creatorsCollectionData) {
         creatorsCollectionData = await getCollectionDataById(
-            "63dd4fc33d98e633bec43f3a"
+            "648fcf71981e8ad8659edeb5"
         );
     }
     return creatorsCollectionData;

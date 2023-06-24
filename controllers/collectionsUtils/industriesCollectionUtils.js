@@ -5,7 +5,7 @@ let industriesCollectionData;
 const getIndustriesCollectionData = async () => {
     if (!industriesCollectionData)
         industriesCollectionData = await getCollectionDataById(
-            "63dd4fc33d98e62032c43f3b"
+            "648fcf71981e8ad8659ede76"
         );
     return industriesCollectionData;
 };
